@@ -18,6 +18,7 @@
     - boto
     - boto3
     - botocore
+    - python3-pip
 
   - name: Launching ec2 instance
     amazon.aws.ec2_instance:
