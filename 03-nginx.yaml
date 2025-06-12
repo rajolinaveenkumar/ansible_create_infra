@@ -1,0 +1,23 @@
+# input or getting servers from 03-demo.aws_ec2.yaml dynamically fetch the servers and hosts should be all.
+
+- name: Install and start nginx service # PlayBook Name
+  hosts: all #
+  become: yes # -b
+  tasks:
+  - name: install nginx
+    ansible.builtin.package:
+      name: nginx
+      state: installed
+
+  - name: start nginx service
+    ansible.builtin.service:
+      name: nginx
+      enabled: yes # here "enabled: true", we can use this one also for enabled
+      state: restarted
+
+  - name: checking the nginx service
+    ansible.builtin.service_facts:
+      
+  - name: print the nginx service status
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts.services['nginx.service'] }}"
