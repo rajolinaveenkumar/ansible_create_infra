@@ -25,6 +25,7 @@
       instance_type: "{{ instances_type }}"
       subnet_id: "{{ subnet_ID }}"
       image_id: "{{ image_ID }}"
+      region: us-east-1
     loop:
     - mysql
     - backend
