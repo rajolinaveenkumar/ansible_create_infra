@@ -17,6 +17,7 @@
     - cryptography
     - boto
     - boto3
+    - botocore
 
   - name: Launching ec2 instance
     amazon.aws.ec2_instance:
