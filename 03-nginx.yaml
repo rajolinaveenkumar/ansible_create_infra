@@ -3,6 +3,7 @@
 - name: Install and start nginx service # PlayBook Name
   hosts: all #
   become: yes # -b
+  serial: 4
   tasks:
   - name: install nginx
     ansible.builtin.package:
