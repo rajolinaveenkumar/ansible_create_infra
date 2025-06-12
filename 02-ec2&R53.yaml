@@ -30,8 +30,13 @@
     - mysql
     - backend
     - frontend
-    register: ec2_ipaddress
+    register: ec2_info
 
-  - name: Print ec2 instances ip address
+  # - name: print ec2 information
+  #   ansible.builtin.debug:
+  #     msg: "{{ ec2_info }}"
+
+  - name: print private ip
     ansible.builtin.debug:
-      msg: "{{ ec2_ipaddress }}"
+      msg: "{{ item.instances[0].private_ip_address}}"
+    loop: "{{ ec2_info.results }}"
