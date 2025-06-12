@@ -1,7 +1,6 @@
 - name: Launch EC2 instance with a Community AMI
   connection: local
   hosts: local
-  become: yes
   vars:
     security_groups_ID: sg-087f3838223040db0
     subnet_ID: subnet-08933a042f7aa0d82
