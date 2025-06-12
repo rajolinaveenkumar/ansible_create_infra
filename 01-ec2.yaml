@@ -1,0 +1,45 @@
+- name: Launch EC2 instance with a Community AMI
+  connection: local
+  hosts: local
+  become: yes
+  vars:
+    security_groups_ID: sg-087f3838223040db0
+    subnet_ID: subnet-08933a042f7aa0d82
+    image_ID: ami-09c813fb71547fc4f
+    instances_type: t3.micro
+  tasks:
+  - name: installing python libraries
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - PyMySQL
+    - cryptography
+    - boto
+    - boto3
+
+  - name: Launching ec2 instance
+    amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      security_group: "{{ security_groups_ID}}"
+      instance_type: "{{ instance_type }}"
+      subnet_id: "{{ subnet_ID }}"
+      image_id: "{{ image_ID }}"
+    loop:
+    - mysql
+    - backend
+    - frontend
+
+
+# Install boto3 and botocore:
+# Use pip to install the necessary libraries:
+
+# sudo yum install python3-pip  # if pip3 is not installed
+# sudo pip3 install boto3 botocore
+
+
+# Verify Installation:
+
+# After installation, verify that the libraries are installed correctly by running:
+
+# python3 -c "import boto3; import botocore"
